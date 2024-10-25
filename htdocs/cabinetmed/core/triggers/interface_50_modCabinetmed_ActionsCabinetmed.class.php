@@ -24,11 +24,13 @@
  *  \brief      Trigger file for cabinetmed module
  */
 
+require_once DOL_DOCUMENT_ROOT.'/core/triggers/dolibarrtriggers.class.php';
+
 
 /**
  *  Class of triggered functions for cabinetmed module
  */
-class InterfaceActionsCabinetmed
+class InterfaceActionsCabinetmed extends DolibarrTriggers
 {
 	var $db;
 	var $error;
