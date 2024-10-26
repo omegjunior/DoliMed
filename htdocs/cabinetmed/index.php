@@ -76,13 +76,12 @@ print '<form method="post" action="'.DOL_URL_ROOT.'/societe/list.php">';
 print '<input type="hidden" name="token" value="'.newToken().'">';
 print '<table class="noborder" width="100%">';
 print '<tr class="liste_titre">';
-print '<th colspan="3">'.$langs->trans("Search").'</th></tr>';
+print '<th colspan="2" class="center"><input type="submit" class="button small" value="'.$langs->trans("Search").'"></th></tr>';
 print '<tr class="oddeven nohover"><td>';
 print $langs->trans("Name").':</td><td class="oddeven"><input class="flat" type="text" size="14" name="search_nom_only"></td>';
-print '<td rowspan="'.$rowspan.'" class="oddeven nohover"><input type="submit" class="button" value="'.$langs->trans("Search").'"></td></tr>';
+print '</tr>';
 print '<tr class="oddeven nohover"><td>';
 print $langs->trans("Other").':</td><td><input class="flat" type="text" size="14" name="search_all"></td>';
-//print '<td><input type="submit" class="button" value="'.$langs->trans("Search").'"></td>';
 print '</tr>';
 
 print "</table></form><br>";
@@ -119,7 +118,7 @@ if ($resql) {
 	}
 } else dol_print_error($db);
 
-print '<table class="noborder" width="100%">';
+print '<table class="noborder centpercent">';
 print '<tr class="liste_titre"><th colspan="2">'.$langs->trans("Statistics").'</th></tr>';
 $statstring = '';
 if (isModEnabled('cabinetmed')) {
