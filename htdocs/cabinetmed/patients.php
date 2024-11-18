@@ -58,7 +58,7 @@ $socid = GETPOST('socid', 'int');
 if ($user->socid) $socid=$user->socid;
 $result = restrictedArea($user, 'societe', $socid, '');
 
-$search_all=trim(GETPOSTISSET('search_all')?GETPOST('search_all', 'alphanohtml'):GETPOST('sall', 'alphanohtml'));
+$search_all=trim(GETPOST('search_all', 'alphanohtml'));
 $sall=$search_all;
 $search_cti=preg_replace('/^0+/', '', preg_replace('/[^0-9]/', '', GETPOST('search_cti', 'alphanohtml')));	// Phone number without any special chars
 

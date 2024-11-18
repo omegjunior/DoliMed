@@ -51,7 +51,7 @@ $socid = GETPOST('socid', 'int');
 if ($user->socid) $socid=$user->socid;
 $result = restrictedArea($user, 'societe', $socid, '');
 
-$search_all=trim(GETPOSTISSET('search_all')?GETPOST('search_all', 'alpha'):GETPOST('sall', 'alpha'));
+$search_all=trim(GETPOST('search_all', 'alphanohtml'));
 $search_nom=trim(GETPOST("search_nom"));
 $search_nom_only=trim(GETPOST("search_nom_only"));
 $search_ville=trim(GETPOST("search_ville"));
