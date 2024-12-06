@@ -267,6 +267,7 @@ if ($resql) {
 
 		$consultation_static->id = $objp->rowid;
 		$consultation_static->ref = $objp->ref;
+		$consultation_static->fk_soc = $objp->socid;
 		$consultation_static->datecons = $db->jdate($objp->datecons);
 		
 		$thirdparty_static->id=$objp->socid;
