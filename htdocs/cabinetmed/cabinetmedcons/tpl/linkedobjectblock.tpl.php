@@ -38,12 +38,13 @@ $linkedObjectBlock = $GLOBALS['linkedObjectBlock'];
 $langs->load("orders");
 
 $total=0; $ilink=0;
-$var=true;
+
 foreach ($linkedObjectBlock as $key => $objectlink) {
 	$ilink++;
-	$var=!$var;
-	$trclass=($var?'pair':'impair');
-	if ($ilink == count($linkedObjectBlock) && empty($noMoreLinkedObjectBlockAfter) && count($linkedObjectBlock) <= 1) $trclass.=' liste_sub_total';
+	$trclass = 'oddeven';
+	if ($ilink == count($linkedObjectBlock) && empty($noMoreLinkedObjectBlockAfter) && count($linkedObjectBlock) <= 1) {
+		$trclass.=' liste_sub_total';
+	}
 	?>
 	<tr class="<?php echo $trclass; ?>">
 		<td><?php echo $langs->trans("Patient"); ?></td>
