@@ -40,7 +40,8 @@ class CabinetmedCons extends CommonObject
 	var $table_element='cabinetmed_cons';	//!< Name of table without prefix where object is stored
 
 	var $id;
-
+	var $ref;
+	
 	var $fk_soc;
 	var $datecons='';
 	var $typepriseencharge;

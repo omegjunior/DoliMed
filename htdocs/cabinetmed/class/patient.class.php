@@ -29,6 +29,7 @@
  *	\brief      File for patient class
  */
 require_once DOL_DOCUMENT_ROOT."/societe/class/societe.class.php";
+require_once DOL_DOCUMENT_ROOT."/user/class/user.class.php";
 
 
 /**
@@ -154,8 +155,6 @@ class Patient extends Societe
 	 */
 	function __construct($db)
 	{
-		global $conf;
-
 		$this->db = $db;
 
 		$this->client = 0;
@@ -174,7 +173,7 @@ class Patient extends Societe
 	 *  Update parameters of third party
 	 *
 	 *  @param     	int		$id              			id societe
-	 *  @param      string	$user            			Utilisateur qui demande la mise a jour
+	 *  @param      User	$user            			Utilisateur qui demande la mise a jour
 	 *  @param      int		$call_trigger    			0=non, 1=oui
 	 *	@param		int		$allowmodcodeclient			Inclut modif code client et code compta
 	 *	@param		int		$allowmodcodefournisseur	Inclut modif code fournisseur et code compta fournisseur
@@ -182,7 +181,7 @@ class Patient extends Societe
 	 *	@param		int		$nosyncmember				Do not synchronize info of linked member
 	 *  @return     int      			       			<0 if KO, >=0 if OK
 	 */
-	function update($id, $user = '', $call_trigger = 1, $allowmodcodeclient = 0, $allowmodcodefournisseur = 0, $action = 'update', $nosyncmember = 1)
+	function update($id, User $user, $call_trigger = 1, $allowmodcodeclient = 0, $allowmodcodefournisseur = 0, $action = 'update', $nosyncmember = 1)
 	{
 		require_once DOL_DOCUMENT_ROOT."/core/lib/functions2.lib.php";
 

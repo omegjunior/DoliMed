@@ -40,16 +40,20 @@ if (! $res) die("Include of main fails");
 
 require_once DOL_DOCUMENT_ROOT.'/societe/class/societe.class.php';
 dol_include_once('/cabinetmed/class/patient.class.php');
+dol_include_once('/cabinetmed/class/cabinetmedcons.class.php');
 
 $langs->load("companies");
 
 $socid = GETPOST('socid', 'int');
-if ($user->socid) $socid=$user->socid;
+if ($user->socid) {
+	$socid = $user->socid;
+}
 
 // Security check
 $result=restrictedArea($user, 'societe', 0, '', '', '', '');
 
 $thirdparty_static = new Patient($db);
+$consultation_static = new CabinetmedCons($db);
 
 $max = getDolGlobalInt('MAIN_SIZE_SHORTLIST_LIMIT', 5);
 
@@ -221,6 +225,108 @@ if ($resql) {
 	dol_print_error($db);
 }
 
+
+/*
+ * Last consultations modified
+ */
+$sql = "SELECT c.rowid, c.rowid as ref, c.datecons, c.tms as datem, s.rowid as socid, s.nom as name, s.client, s.fournisseur, s.canvas, s.status as status";
+$sql.= " FROM ".MAIN_DB_PREFIX."societe as s, ".MAIN_DB_PREFIX."cabinetmed_cons as c";
+if (! $user->hasRight('societe', 'client', 'voir') && ! $socid) $sql.= ", ".MAIN_DB_PREFIX."societe_commerciaux as sc";
+$sql.= ' WHERE c.fk_soc = s.rowid AND c.entity IN ('.getEntity('societe', 1).')';
+if (! $user->hasRight('societe', 'client', 'voir') && ! $socid) $sql.= " AND s.rowid = sc.fk_soc AND sc.fk_user = " .$user->id;
+if ($socid)	$sql.= " AND s.rowid = ".$socid;
+//if (! $user->rights->fournisseur->lire) $sql.=" AND (s.fournisseur <> 1 OR s.client <> 0)";
+$sql.= $db->order("s.tms", "DESC");
+$sql.= $db->plimit($max, 0);
+
+//print $sql;
+$resql = $db->query($sql);
+if ($resql) {
+	$num = $db->num_rows($resql);
+
+	$i = 0;
+
+	$transRecordedType = $langs->trans("LastModifiedConsultations", $max);
+
+	print '<table class="noborder centpercent">';
+
+	$lastmodified = '';
+	print '<tr class="liste_titre"><th colspan="2">';
+	print $transRecordedType;
+	$lastmodified .= '<a class="marginleftonly" href="'.dol_buildpath('/cabinetmed/listconsult.php', 1).'?sortfield=s.tms&sortorder=DESC" title="'.$langs->trans("FullList").'">';
+	$lastmodified .= '<span class="badge marginleftonlyshort">...</span>';
+	$lastmodified .= '</a>';
+	print $lastmodified;
+	print '</td>';
+	print '<th>&nbsp;</td>';
+	print '<th align="right"></td>';
+	print '</tr>';
+
+	while ($i < $num) {
+		$objp = $db->fetch_object($resql);
+
+		$consultation_static->id = $objp->rowid;
+		$consultation_static->ref = $objp->ref;
+		$consultation_static->datecons = $db->jdate($objp->datecons);
+		
+		$thirdparty_static->id=$objp->socid;
+		$thirdparty_static->name=$objp->name;
+		$thirdparty_static->client=$objp->client;
+		$thirdparty_static->fournisseur=$objp->fournisseur;
+		$thirdparty_static->datem=$db->jdate($objp->datem);
+		$thirdparty_static->status=$objp->status;
+		$thirdparty_static->canvas=$objp->canvas;
+
+		print '<tr class="oddeven">';
+
+		// Ref
+		print '<td class="nowrap">';
+		print $consultation_static->getNomUrl(1);
+		print "</td>\n";
+
+		// Date
+		print '<td class="nowrap">';
+		print dol_print_date($consultation_static->datecons);;
+		print "</td>\n";
+					
+		// Name
+		print '<td class="nowrap">';
+		print $thirdparty_static->getNomUrl(1);
+		print "</td>\n";
+
+		// Type
+		/*
+		print '<td class="center">';
+		$thirdparty_static->name=$langs->trans("Patient");
+		print $thirdparty_static->getNomUrl(0, 'patient');
+		print '</td>';
+		*/
+		
+		// Last modified date
+		print '<td align="right">';
+		print dol_print_date($thirdparty_static->datem, 'day');
+		print "</td>";
+
+		// Status
+		/*print '<td align="right" nowrap="nowrap">';
+		print $thirdparty_static->getLibStatut(3);
+		print "</td>";
+		*/
+		
+		print "</tr>\n";
+
+		$i++;
+	}
+
+	if ($num == 0) {
+		print '<tr><td colspan="4"><span class="opacitymedium">'.$langs->trans("None").'</span></td></tr>';
+	}
+	print "</table>";
+
+	$db->free($resql);
+} else {
+	dol_print_error($db);
+}
 
 print '</div></div></div>';
 
