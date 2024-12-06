@@ -592,7 +592,7 @@ class CabinetmedCons extends CommonObject
 	 */
 	function getNomUrl($withpicto = 0, $more = '')
 	{
-		global $conf,$langs;
+		global $langs;
 
 		$result='';
 		$lien=$lienfin='';
@@ -603,7 +603,7 @@ class CabinetmedCons extends CommonObject
 		$lien.=(!empty($this->canvas)?'&amp;canvas='.$this->canvas:'').'">';
 		$lienfin='</a>';
 
-		if ($withpicto) $result.=($lien.img_object($langs->trans("ShowConsult").': '.sprintf('%08d', $this->id), 'briefcase-medical').$lienfin);
+		if ($withpicto) $result.=($lien.img_object($langs->trans("Consultation").': '.sprintf('%08d', $this->id), 'briefcase-medical').$lienfin);
 		if ($withpicto && $withpicto != 2) $result.=' ';
 		$result.=$lien.sprintf('%08d', $this->id).$lienfin;
 
@@ -618,29 +618,28 @@ class CabinetmedCons extends CommonObject
 	 */
 	function load_state_board()
 	{
-		global $conf, $user;
+		global $conf;
 
 		$this->nb=array();
-		$clause = "WHERE";
 
 		$sql = "SELECT count(c.rowid) as nb";
 		$sql.= " FROM ".MAIN_DB_PREFIX."cabinetmed_cons as c";
-		//$sql.= " ".$clause." c.entity = ".$conf->entity;
+		$sql.= " WHERE c.entity = ".((int) $conf->entity);
 
 		$resql=$this->db->query($sql);
 		if ($resql) {
 			while ($obj=$this->db->fetch_object($resql)) {
-				$this->nb["Cabinetmedcons"]=$obj->nb;
+				$this->nb["Cabinetmedcons"] = $obj->nb;
 			}
 
 			$sql = "SELECT count(rowid) as nb";
 			$sql.= " FROM ".MAIN_DB_PREFIX."societe WHERE canvas = 'patient@cabinetmed'";
-			//$sql.= " ".$clause." c.entity = ".$conf->entity;
+			$sql.= " WHERE c.entity = ".((int) $conf->entity);
 
 			$resql2=$this->db->query($sql);
 			if ($resql2) {
 				while ($obj=$this->db->fetch_object($resql2)) {
-					$this->nb["Patients"]=$obj->nb;
+					$this->nb["Patients"] = $obj->nb;
 				}
 			}
 
