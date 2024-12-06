@@ -62,15 +62,9 @@ foreach ($linkedObjectBlock as $key => $objectlink) {
 			<?php
 			// For now, shipments must stay linked to order, so link is not deletable
 			if ($object->element != 'shipping') {
-				if ((float) DOL_VERSION < 8.0) {
-					?>
-					<a class="reposition" href="<?php echo $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=dellink&dellinkid='.$key; ?>"><?php echo img_delete($langs->transnoentitiesnoconv("RemoveLink")); ?></a>
-					<?php
-				} else {
-					?>
-					<a class="reposition" href="<?php echo $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=dellink&dellinkid='.$key; ?>"><?php echo img_picto($langs->transnoentitiesnoconv("RemoveLink"), 'unlink'); ?></a>
-					<?php
-				}
+				?>
+				<a class="reposition" href="<?php echo $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=dellink&token='.newtoken().'&dellinkid='.((int) $key); ?>"><?php echo img_picto($langs->transnoentitiesnoconv("RemoveLink"), 'unlink'); ?></a>
+				<?php
 			}
 			?>
 		</td>
