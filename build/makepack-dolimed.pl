@@ -648,7 +648,7 @@ if ($nboftargetok) {
 
 			# Set owners
             print "Set owners on files/dir\n";
-		    $ret=`chown -R root.root $BUILDROOT/$FILENAMETGZ2`;
+		    $ret=`chown -R root:root $BUILDROOT/$FILENAMETGZ2`;
 
             print "Set permissions on files/dir\n";
 		    $ret=`chmod -R 755 $BUILDROOT/$FILENAMETGZ2`;
@@ -826,7 +826,7 @@ if ($nboftargetok) {
             
 			# Set owners and permissions
             print "Set owners on files/dir\n";
-		    $ret=`chown -R root.root $BUILDROOT/$PROJECT.tmp`;
+		    $ret=`chown -R root;root $BUILDROOT/$PROJECT.tmp`;
             print "Set permissions on files/dir\n";
 		    $ret=`chmod -R 755 $BUILDROOT/$PROJECT.tmp`;
 		    $cmd="find $BUILDROOT/$PROJECT.tmp -type f -exec chmod 644 {} \\; ";
