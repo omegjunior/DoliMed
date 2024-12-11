@@ -8,7 +8,7 @@
 ; package contains only one user called root with no password.
 ; For this, you can edit the mysql.user table of the source database to keep
 ; only the root user with no password, stop server and catch
-; files user.MY* to put them in the Dolibarr build/exe/doliwamp/mysql directory.
+; files user.MY* to put them in the Dolibarr dev/build/exe/doliwamp/mysql directory.
 ;----------------------------------------------------------------------------------------
 
 
@@ -20,7 +20,7 @@ AppVerName=__FILENAMEEXEDOLIWAMP__
 ; Replace key with DoliWamp-x.x x or DoliWamp-x.x.x-alpha or DoliWamp-x.x.x-beta or DoliWamp-x.x.x-rc or DoliWamp-x.x.x
 OutputBaseFilename=__FILENAMEEXEDOLIWAMP__
 ; ----- End of change
-;OutputManifestFile=build\dolimedbuild.log
+;OutputManifestFile=dev\build\dolimedbuild.log
 ; Define full path from which all relative path are defined
 ; You must modify this to put here your dolibarr root directory
 ;SourceDir=Z:\home\ldestailleur\git\dolibarrxxx
@@ -38,8 +38,8 @@ DefaultGroupName=DoliMed
 ;Compression=none
 Compression=lzma
 SolidCompression=yes
-WizardImageFile=build\exe\dolimed\dolimed.bmp
-WizardSmallImageFile=build\exe\dolimed\dolimedsmall.bmp
+WizardImageFile=dev\build\exe\dolimed\dolimed.bmp
+WizardSmallImageFile=dev\build\exe\dolimed\dolimedsmall.bmp
 SetupIconFile=htdocs\cabinetmed\img\dolimed.ico
 ;To say the installer must be ran as admin
 PrivilegesRequired=admin
@@ -48,28 +48,28 @@ ChangesEnvironment=no
 CreateUninstallRegKey=yes
 ;UseSetupLdr=no
 ;UninstallDisplayIcon={app}\bidon
-OutputDir=build
+OutputDir=dev\build
 ShowLanguageDialog=auto
 ShowUndisplayableLanguages=no
 LanguageDetectionMethod=uilanguage
 ;SignedUninstaller=yes
 
 [Languages]
-Name: "en"; MessagesFile: "compiler:Default.isl,build\exe\dolimed\Languages\MyEnglish.isl"
-Name: "br"; MessagesFile: "compiler:Languages\Portuguese.isl,build\exe\dolimed\Languages\MyBrazilianPortuguese.isl"
-Name: "ca"; MessagesFile: "compiler:Languages\Catalan.isl,build\exe\dolimed\Languages\MyCatalan.isl"
-Name: "da"; MessagesFile: "compiler:Languages\Danish.isl,build\exe\dolimed\Languages\MyDanish.isl"
-Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl,build\exe\dolimed\Languages\MySpanish.isl"
-Name: "nl"; MessagesFile: "compiler:Languages\Dutch.isl,build\exe\dolimed\Languages\MyDutch.isl"
-Name: "fi"; MessagesFile: "compiler:Languages\Finnish.isl,build\exe\dolimed\Languages\MyFinnish.isl"
-Name: "fr"; MessagesFile: "compiler:Languages\French.isl,build\exe\dolimed\Languages\MyFrench.isl"
-Name: "ge"; MessagesFile: "compiler:Languages\German.isl,build\exe\dolimed\Languages\MyGerman.isl"
-Name: "it"; MessagesFile: "compiler:Languages\Italian.isl,build\exe\dolimed\Languages\MyItalian.isl"
-Name: "nb"; MessagesFile: "compiler:Languages\Norwegian.isl,build\exe\dolimed\Languages\MyNorwegian.isl"
-Name: "po"; MessagesFile: "compiler:Languages\Polish.isl,build\exe\dolimed\Languages\MyPolish.isl"
-Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl,build\exe\dolimed\Languages\MyPortuguese.isl"
-Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl,build\exe\dolimed\Languages\MyRussian.isl"
-Name: "sv"; MessagesFile: "compiler:Languages\Slovenian.isl,build\exe\dolimed\Languages\MySlovenian.isl"
+Name: "en"; MessagesFile: "compiler:Default.isl,dev\build\exe\dolimed\Languages\MyEnglish.isl"
+Name: "br"; MessagesFile: "compiler:Languages\Portuguese.isl,dev\build\exe\dolimed\Languages\MyBrazilianPortuguese.isl"
+Name: "ca"; MessagesFile: "compiler:Languages\Catalan.isl,dev\build\exe\dolimed\Languages\MyCatalan.isl"
+Name: "da"; MessagesFile: "compiler:Languages\Danish.isl,dev\build\exe\dolimed\Languages\MyDanish.isl"
+Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl,dev\build\exe\dolimed\Languages\MySpanish.isl"
+Name: "nl"; MessagesFile: "compiler:Languages\Dutch.isl,dev\build\exe\dolimed\Languages\MyDutch.isl"
+Name: "fi"; MessagesFile: "compiler:Languages\Finnish.isl,dev\build\exe\dolimed\Languages\MyFinnish.isl"
+Name: "fr"; MessagesFile: "compiler:Languages\French.isl,dev\build\exe\dolimed\Languages\MyFrench.isl"
+Name: "ge"; MessagesFile: "compiler:Languages\German.isl,dev\build\exe\dolimed\Languages\MyGerman.isl"
+Name: "it"; MessagesFile: "compiler:Languages\Italian.isl,dev\build\exe\dolimed\Languages\MyItalian.isl"
+Name: "nb"; MessagesFile: "compiler:Languages\Norwegian.isl,dev\build\exe\dolimed\Languages\MyNorwegian.isl"
+Name: "po"; MessagesFile: "compiler:Languages\Polish.isl,dev\build\exe\dolimed\Languages\MyPolish.isl"
+Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl,dev\build\exe\dolimed\Languages\MyPortuguese.isl"
+Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl,dev\build\exe\dolimed\Languages\MyRussian.isl"
+Name: "sv"; MessagesFile: "compiler:Languages\Slovenian.isl,dev\build\exe\dolimed\Languages\MySlovenian.isl"
 
 [Tasks]
 ;Name: "autostart"; Description: "Automatically launch DoliMed server on startup. If you check this option, Services will be installed as automatic. Otherwise, services will be installed as manual and will start and stop with the service manager."; GroupDescription: "Auto Start:" ;Flags: unchecked;
@@ -84,19 +84,19 @@ Name: "{app}\bin\apache\apache2.4.41\logs"
 
 [Files]
 ; Stop/start
-Source: "build\exe\dolimed\stopdoliwamp.bat"; DestDir: "{app}\"; Flags: ignoreversion; AfterInstall: close()
-Source: "build\exe\dolimed\startdoliwamp.bat"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\dolimed\install_services.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\dolimed\uninstall_services.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\removefiles.bat"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\rundoliwamp.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\rundolihelp.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\rundoliadmin.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\mysqlinitpassword.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\mysqltestinstall.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\startdoliwamp_manual_donotuse.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\builddemosslfiles.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\UsedPort.exe"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\dolimed\stopdoliwamp.bat"; DestDir: "{app}\"; Flags: ignoreversion; AfterInstall: close()
+Source: "dev\build\exe\dolimed\startdoliwamp.bat"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\dolimed\install_services.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\dolimed\uninstall_services.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\removefiles.bat"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\rundoliwamp.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\rundolihelp.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\rundoliadmin.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\mysqlinitpassword.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\mysqltestinstall.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\startdoliwamp_manual_donotuse.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\builddemosslfiles.bat.install"; DestDir: "{app}\"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\UsedPort.exe"; DestDir: "{app}\"; Flags: ignoreversion;
 ; PhpMyAdmin, Apache, Php, Mysql
 ; Put here path of Wampserver applications
 ; Value OK: apache 2.2.6, php 5.2.5 (5.2.11, 5.3.0 and 5.3.1 fails if php_exif, php_pgsql, php_zip is on), mysql 5.0.45
@@ -113,7 +113,7 @@ Source: "C:\wamp64\bin\mariadb\mariadb10.4.10\*.*"; DestDir: "{app}\bin\mariadb\
 
 ; Mysql data files (does not overwrite if exists)
 ; We must copy them because the tool mysql_install_db.exe to generate them at first install does not return to prompt so make install hang
-;Source: "build\exe\doliwamp\mysql\*.*"; DestDir: "{app}\bin\mariadb\data\mysql"; Flags: onlyifdoesntexist ignoreversion recursesubdirs; Excludes: ".gitignore,.project,CVS\*,Thumbs.db"
+;Source: "dev\build\exe\doliwamp\mysql\*.*"; DestDir: "{app}\bin\mariadb\data\mysql"; Flags: onlyifdoesntexist ignoreversion recursesubdirs; Excludes: ".gitignore,.project,CVS\*,Thumbs.db"
 
 ; Dolibarr
 Source: "htdocs\*.*"; DestDir: "{app}\www\dolibarr\htdocs"; Flags: ignoreversion recursesubdirs; Excludes: ".gitignore,.project,CVS\*,Thumbs.db,custom\*,custom2\*,documents\*,includes\ckeditor\_source\*,includes\savant\*,includes\phpmailer\*,jquery\plugins\template\*,nltechno*\*,sabre\sabre\*\tests,tcpdf\fonts\dejavu-fonts-ttf-2.33\*,tcpdf\fonts\freefont-20100919\*,tcpdf\fonts\utils\*,*\conf.php,*\conf.php.mysql,*\conf.php.old,*\conf.php.postgres,*\conf.php.sav,*\install.forced.php"
@@ -122,20 +122,20 @@ Source: "doc\*.*"; DestDir: "{app}\www\dolibarr\doc"; Flags: ignoreversion recur
 Source: "scripts\*.*"; DestDir: "{app}\www\dolibarr\scripts"; Flags: ignoreversion recursesubdirs; Excludes: ".gitignore,.project,CVS\*,Thumbs.db,product\materiel.net.php,product\import-product.php"
 Source: "*.*"; DestDir: "{app}\www\dolibarr"; Flags: ignoreversion; Excludes: ".gitignore,.project,CVS\*,Thumbs.db,default.properties,install.lock"
 ; Config files
-Source: "build\exe\doliwamp\phpmyadmin.conf.install"; DestDir: "{app}\alias"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\dolibarr.conf.install"; DestDir: "{app}\alias"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\config.inc.php.install"; DestDir: "{app}\apps\phpmyadmin4.1.14"; Flags: ignoreversion;
-;Source: "build\exe\doliwamp\httpd.conf.install"; DestDir: "{app}\bin\apache\apache2.4.9\conf"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\httpd.conf.install"; DestDir: "{app}\bin\apache\apache2.4.41\conf"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\my.ini.install"; DestDir: "{app}\bin\mysql\mysql5.0.45"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\my.ini.install"; DestDir: "{app}\bin\mariadb\mariadb10.4.10"; Flags: ignoreversion;
-;Source: "build\exe\doliwamp\php.ini.install"; DestDir: "{app}\bin\php\php5.5.12"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\php.ini.install"; DestDir: "{app}\bin\php\php7.3.12"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\index.php.install"; DestDir: "{app}\www"; Flags: ignoreversion;
-Source: "build\exe\dolimed\install.forced.php.install"; DestDir: "{app}\www\dolibarr\htdocs\install"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\openssl.conf"; DestDir: "{app}"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\ca_demo_dolibarr.crt"; DestDir: "{app}"; Flags: ignoreversion;
-Source: "build\exe\doliwamp\ca_demo_dolibarr.key"; DestDir: "{app}"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\phpmyadmin.conf.install"; DestDir: "{app}\alias"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\dolibarr.conf.install"; DestDir: "{app}\alias"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\config.inc.php.install"; DestDir: "{app}\apps\phpmyadmin4.1.14"; Flags: ignoreversion;
+;Source: "dev\build\exe\doliwamp\httpd.conf.install"; DestDir: "{app}\bin\apache\apache2.4.9\conf"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\httpd.conf.install"; DestDir: "{app}\bin\apache\apache2.4.41\conf"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\my.ini.install"; DestDir: "{app}\bin\mysql\mysql5.0.45"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\my.ini.install"; DestDir: "{app}\bin\mariadb\mariadb10.4.10"; Flags: ignoreversion;
+;Source: "dev\build\exe\doliwamp\php.ini.install"; DestDir: "{app}\bin\php\php5.5.12"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\php.ini.install"; DestDir: "{app}\bin\php\php7.3.12"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\index.php.install"; DestDir: "{app}\www"; Flags: ignoreversion;
+Source: "dev\build\exe\dolimed\install.forced.php.install"; DestDir: "{app}\www\dolibarr\htdocs\install"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\openssl.conf"; DestDir: "{app}"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\ca_demo_dolibarr.crt"; DestDir: "{app}"; Flags: ignoreversion;
+Source: "dev\build\exe\doliwamp\ca_demo_dolibarr.key"; DestDir: "{app}"; Flags: ignoreversion;
 ; Licence
 Source: "COPYRIGHT"; DestDir: "{app}"; Flags: ignoreversion;
 
