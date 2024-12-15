@@ -1323,7 +1323,7 @@ if ($action == '' || $action == 'list' || $action == 'delete') {
 			print '<tr class="oddeven">';
 
 			if (! empty($arrayfields['t.rowid']['checked'])) {
-				print '<td>';
+				print '<td class="nowraponall">';
 				$consultstatic->id = $obj->rowid;
 				$consultstatic->fk_soc = $obj->fk_soc;
 				print $consultstatic->getNomUrl(1, '&backtopage='.urlencode($_SERVER["PHP_SELF"].'?socid='.$obj->fk_soc));
@@ -1332,7 +1332,7 @@ if ($action == '' || $action == 'list' || $action == 'delete') {
 			}
 
 			if (! empty($arrayfields['t.datecons']['checked'])) {
-				print '<td class="center">';
+				print '<td class="center nowraponall">';
 				print dol_print_date($db->jdate($obj->datecons), 'day');
 				print '</td>';
 				$totalarray['nbfield']++;
