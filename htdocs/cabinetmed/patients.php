@@ -42,6 +42,7 @@ require_once DOL_DOCUMENT_ROOT."/core/class/html.formother.class.php";
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formcompany.class.php';
 require_once DOL_DOCUMENT_ROOT.'/societe/class/client.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
+include_once "./class/patient.class.php";
 require_once "./lib/cabinetmed.lib.php";
 
 $langs->loadLangs(array("companies", "commercial", "customers", "suppliers", "bills", "compta", "categories", "cashdesk", "other", "cabinetmed@cabinetmed"));
@@ -132,7 +133,7 @@ $pageprev = $page - 1;
 $pagenext = $page + 1;
 
 // Initialize technical objects
-$object = new Societe($db);
+$object = new Patient($db);
 $hookmanager->initHooks(array('thirdpartylist'));
 $extrafields = new ExtraFields($db);
 
