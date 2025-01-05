@@ -6,6 +6,8 @@
 #----------------------------------------------------------------------------
 
 use Cwd;
+use Term::ANSIColor;
+
 $OWNER="ldestailleur";
 $GROUP="ldestailleur";
 
@@ -35,9 +37,9 @@ $DIR||='.'; $DIR =~ s/([^\/\\])[\\\/]+$/$1/;
 # --------------
 if ("$^O" =~ /linux/i || (-d "/etc" && -d "/var" && "$^O" !~ /cygwin/i)) { $OS='linux'; $CR=''; }
 elsif (-d "/etc" && -d "/Users") { $OS='macosx'; $CR=''; }
-elsif ("$^O" =~ /cygwin/i || "$^O" =~ /win32/i) { $OS='windows'; $CR="\r"; }
+elsif ("$^O" =~ /cygwin/i || "$^O" =~ /win32/i || "$^O" =~ /msys/i) { $OS='windows'; $CR="\r"; }
 if (! $OS) {
-    print "$PROG.$Extension was not able to detect your OS.\n";
+	print "Error: Can't detect your OS.\n";
 	print "Can't continue.\n";
 	print "$PROG.$Extension aborted.\n";
     sleep 2;
